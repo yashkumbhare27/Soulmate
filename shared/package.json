@@ -1,0 +1,6 @@
+{
+  "name": "@soulmate/shared",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "types": "src/types.ts"
+}

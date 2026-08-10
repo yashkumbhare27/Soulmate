@@ -1,0 +1,22 @@
+{
+  "colors": {
+    "primary": "#8B5FBF",
+    "primaryLight": "#A78BFA",
+    "secondary": "#E8A0BF",
+    "accentPink": "#F7CAD0",
+    "neutralDark": "#0F0B13",
+    "neutralDarkCard": "#171221",
+    "neutralLight": "#FCFAF7",
+    "neutralLightCard": "#FFFFFF",
+    "accentAI": "#F59E0B",
+    "accentAIGlow": "#D4AF37",
+    "success": "#10B981",
+    "error": "#EF4444"
+  },
+  "motion": {
+    "splashDuration": 2.5,
+    "taglineDuration": 1.0,
+    "morphDuration": 1.0,
+    "staggerDuration": 0.08
+  }
+}
