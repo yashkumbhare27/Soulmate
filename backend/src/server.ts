@@ -174,8 +174,14 @@ const seedDatabase = async () => {
 connectDB().then(() => {
   seedDatabase();
   initSockets(io);
-  
-  server.listen(PORT, () => {
-    console.log(`SoulMate AI Backend API running on port ${PORT}`);
-  });
+
+  // Only listen on a port in local dev (not on Vercel serverless)
+  if (process.env.NODE_ENV !== 'production') {
+    server.listen(PORT, () => {
+      console.log(`SoulMate AI Backend API running on port ${PORT}`);
+    });
+  }
 });
+
+// Export for Vercel serverless runtime
+export default app;
