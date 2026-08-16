@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import io from 'socket.io-client';
 import { Send, Sparkles, Clock, MapPin, CheckSquare, RefreshCw, MessageSquare } from 'lucide-react';
 import { Navbar } from '../../components/Navbar';
+import { API_BASE_URL } from '../../lib/config';
 
 interface ChatRoom {
   matchId: string;
@@ -59,7 +60,7 @@ export default function ChatPage() {
     fetchRooms();
 
     // Setup Socket
-    socketRef.current = io('http://localhost:5000');
+    socketRef.current = io(API_BASE_URL);
     
     socketRef.current.on('receive_message', (message: Message) => {
       // If message is for the currently open room, append it
@@ -118,7 +119,7 @@ export default function ChatPage() {
   const fetchRooms = async () => {
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch('http://localhost:5000/api/matches/active', {
+      const res = await fetch(`${API_BASE_URL}/api/matches/active`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -145,7 +146,7 @@ export default function ChatPage() {
     // Fetch Chat History
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch(`http://localhost:5000/api/chat/${room.matchId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/chat/${room.matchId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();

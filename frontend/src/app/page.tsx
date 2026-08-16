@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SpecularLogo } from '../components/SpecularLogo';
 import { ArrowRight, Phone, Mail, User, ShieldCheck } from 'lucide-react';
+import { API_BASE_URL } from '../lib/config';
 
 export default function Home() {
   const router = useRouter();
@@ -59,7 +60,7 @@ export default function Home() {
     setError('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/otp', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phoneNumber })
@@ -94,7 +95,7 @@ export default function Home() {
         state: stateName
       };
 
-      const res = await fetch('http://localhost:5000/api/auth/verify', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ShieldCheck, UserCheck, PhoneCall, Mail, ToggleLeft, ToggleRight, Sparkles, ShieldAlert } from 'lucide-react';
 import { Navbar } from '../../components/Navbar';
+import { API_BASE_URL } from '../../lib/config';
 
 interface UserRecord {
   user: {
@@ -44,7 +45,7 @@ export default function AdminDashboard() {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('http://localhost:5000/api/admin/users', {
+      const res = await fetch(`${API_BASE_URL}/api/admin/users`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -63,7 +64,7 @@ export default function AdminDashboard() {
   const handleToggleBadge = async (userId: string, badgeField: string, currentValue: boolean) => {
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch('http://localhost:5000/api/admin/verify', {
+      const res = await fetch(`${API_BASE_URL}/api/admin/verify`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

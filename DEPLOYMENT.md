@@ -21,6 +21,11 @@ Ensure you create environment configurations in your deployment provider dashboa
 | :--- | :--- | :--- |
 | `NEXT_PUBLIC_API_URL` | Backend server URL | `https://soulmate-backend.onrender.com` |
 
+**Important:** every fetch call and the Socket.IO client in `frontend/src/app/**` now read this
+value via `frontend/src/lib/config.ts` (`API_BASE_URL`). Set `NEXT_PUBLIC_API_URL` in your Vercel
+project's Environment Variables — without it the app falls back to `http://localhost:5000`, which
+only works on your own machine, not for real visitors.
+
 ---
 
 ## 2. Platform Deployments
@@ -31,7 +36,7 @@ We recommend **Railway** or **Render** for Express API hosting as they natively 
 1. **New Service**: Select *Web Service* connected to your GitHub Repository.
 2. **Build Settings**:
    - Build command: `npm run build` (runs TypeScript compiler `tsc`)
-   - Start command: `npm run start` (runs `node dist/server.ts`)
+   - Start command: `npm run start` (runs `node dist/server.js`, compiled from `src/server.ts`)
 3. **CORS Setup**: The backend Express server is configured with CORS enabled. On Render/Railway, specify the deployed Next.js domain under allowed origins if tightening security.
 4. **Health Check**: Configured at `/health`.
 

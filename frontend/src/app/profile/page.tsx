@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Sparkles, CheckCircle, ArrowRight, UserPlus, Compass } from 'lucide-react';
 import { Navbar } from '../../components/Navbar';
+import { API_BASE_URL } from '../../lib/config';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -56,7 +57,7 @@ export default function ProfileOnboarding() {
     setMessages(updatedMessages);
 
     try {
-      const res = await fetch('http://localhost:5000/api/profile/pref-chat', {
+      const res = await fetch(`${API_BASE_URL}/api/profile/pref-chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

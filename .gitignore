@@ -11,6 +11,13 @@ dist/
 
 
 
+# Env files (never commit real secrets)
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env.local
+
 # Vercel
 .vercel
 

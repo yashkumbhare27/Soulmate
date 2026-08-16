@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Heart, X, Check, Award, MapPin, GraduationCap, Info, MessageSquare, AlertCircle } from 'lucide-react';
 import { Navbar } from '../../components/Navbar';
 import { SpecularLogo } from '../../components/SpecularLogo';
+import { API_BASE_URL } from '../../lib/config';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -34,7 +35,7 @@ export default function Dashboard() {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('http://localhost:5000/api/matches/recommendations', {
+      const res = await fetch(`${API_BASE_URL}/api/matches/recommendations`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -56,7 +57,7 @@ export default function Dashboard() {
     const token = localStorage.getItem('token');
 
     try {
-      const res = await fetch('http://localhost:5000/api/matches/swipe', {
+      const res = await fetch(`${API_BASE_URL}/api/matches/swipe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
